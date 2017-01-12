@@ -13,6 +13,12 @@ uint8_t  mode   = 3, // Current animation effect
          offset = 0; // Position of spinny eyes
 volatile byte changeMode = false;
 
+uint32_t red     = 0xFF0000;
+uint32_t magenta = 0xFF00FF;
+uint32_t green   = 0x00FF00;
+uint32_t cyan    = 0x0000FF;
+uint32_t blue    = 0x0000FF;
+
 void setup() {
   pinMode(BUTTON, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(BUTTON), pin_ISR, FALLING);
@@ -31,25 +37,25 @@ void loop() {
 
   switch(mode) {
   case 0:
-    rollers(0xFF0000);
+    rollers(red);
     break;
   case 1:
     blankAll();
     juggle(0xFFFF00);
     break;
   case 2:
-    rollers(0x00FF00);
+    rollers(green);
     break;
   case 3:
     blankAll();
-    juggle(0x00FFFF);
+    juggle(cyan);
     break;
   case 4:
-    rollers(0x0000FF);
+    rollers(blue);
     break;
   case 5:
     blankAll();
-    juggle(0xFF00FF);
+    juggle(magenta);
     break;
 
 
@@ -65,7 +71,7 @@ void juggle(uint32_t colour) {
     rollLeft(colour);
     rollRight(colour);
   }
-  for(int i = 0; i < 2; i++) {
+/*  for(int i = 0; i < 2; i++) {
     rollLeft(colour);
   }
   for(int i = 0; i < 1; i++) {
@@ -74,7 +80,7 @@ void juggle(uint32_t colour) {
   }
   for(int i = 0; i < 2; i++) {
     rollRight(colour);
-  }
+  }*/
 }
 
 void rollRight(uint32_t colour) {
