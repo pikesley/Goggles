@@ -14,6 +14,7 @@ uint8_t  mode   = 0, // Current animation effect
          offset = 0; // Position of spinny eyes
 volatile byte changeMode = false;
 
+int white[]   = {255, 255, 255};
 int red[]     = {255,   0,   0};
 int orange[]  = {255, 127,   0};
 int green[]   = {  0, 255,   0};
@@ -32,32 +33,33 @@ void loop() {
   if (changeMode) {
     mode++;
     changeMode = false;
-    if (mode > 5) {
+    if (mode > 6) {
       mode = 0;
     }
   }
 
   switch(mode) {
   case 0:
-    rollers(red);
+    blankAll();
+    juggle(white);
     break;
   case 1:
-    blankAll();
-    juggle(orange);
+    rollers(red);
     break;
   case 2:
-    rollers(green);
+    rollers(orange);
     break;
   case 3:
-    blankAll();
-    juggle(cyan);
+    rollers(green);
     break;
   case 4:
-    rollers(blue);
+    rollers(cyan);
     break;
   case 5:
-    blankAll();
-    juggle(magenta);
+    rollers(blue);
+    break;
+  case 6:
+    rollers(magenta);
     break;
   }
 }
