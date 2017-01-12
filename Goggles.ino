@@ -66,12 +66,12 @@ void pin_ISR() {
   changeMode = true;
 }
 
-void juggle(uint32_t colour) {
+void juggle(int colour[]) {
   for(int i = 0; i < 1; i++) {
     rollLeft(colour);
     rollRight(colour);
   }
-/*  for(int i = 0; i < 2; i++) {
+  for(int i = 0; i < 2; i++) {
     rollLeft(colour);
   }
   for(int i = 0; i < 1; i++) {
@@ -80,10 +80,10 @@ void juggle(uint32_t colour) {
   }
   for(int i = 0; i < 2; i++) {
     rollRight(colour);
-  }*/
+  }
 }
 
-void rollRight(uint32_t colour) {
+void rollRight(int colour[]) {
   for(int i = RIGHT_NOSE; i < PIXELS + RIGHT_NOSE; i++) {
     lightOne(i % PIXELS, 0, colour);
     delay(DELAY);
@@ -92,7 +92,7 @@ void rollRight(uint32_t colour) {
   blankAll();
 }
 
-void rollLeft(uint32_t colour) {
+void rollLeft(int colour[]) {
   for(int i = LEFT_NOSE + PIXELS; i > LEFT_NOSE; i--) {
     lightOne(i % PIXELS, PIXELS, colour);
     delay(DELAY);
@@ -101,15 +101,14 @@ void rollLeft(uint32_t colour) {
   blankAll();
 }
 
-void lightOne(int index, int offset, uint32_t colour) {
+void lightOne(int index, int offset, int colour[]) {
   for(int i = offset; i < PIXELS + offset; i++) {
-    uint32_t c = 0;
     pixels.setPixelColor(i, 0);
     if(i == index + offset) {
       pixels.setPixelColor(i,
-                           pgm_read_byte(&gamma8[255]),
-                           pgm_read_byte(&gamma8[127]),
-                           pgm_read_byte(&gamma8[0]));
+                           pgm_read_byte(&gamma8[colour[0]]),
+                           pgm_read_byte(&gamma8[colour[1]]),
+                           pgm_read_byte(&gamma8[colour[2]]));
     }
   }
   pixels.show();
