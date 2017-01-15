@@ -83,6 +83,6 @@ install:
     - unzip /tmp/adafruit_neopixel.zip -d /tmp
 
 script:
-    - platformio ci --lib="/tmp/Adafruit_NeoPixel-master"
+    - platformio ci --lib=/tmp/Adafruit_NeoPixel-master --project-conf platformio.ini
 
 # curse you, Travis
