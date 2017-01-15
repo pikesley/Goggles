@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #include <Adafruit_NeoPixel.h>
 
 #define PIN 16
@@ -10,7 +12,7 @@
 extern const uint8_t gamma8[];
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(PIXELS * 2, PIN);
 
-uint8_t  mode   = 0, // Current animation effect
+uint8_t  mode   = 2, // Current animation effect
          offset = 0; // Position of spinny eyes
 volatile byte changeMode = false;
 
