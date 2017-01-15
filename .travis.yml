@@ -8,9 +8,8 @@ cache:
     directories:
         - "~/.platformio"
 
-env:
-    - PLATFORMIO_CI_SRC=src/Goggles.ino
-    - PLATFORMIO_CI_SRC=src/gamma.h
+#env:
+#    - PLATFORMIO_CI_SRC=src/Goggles.ino src/gamma.h
 
 install:
     - pip install -U platformio
@@ -18,4 +17,4 @@ install:
     - unzip /tmp/adafruit_neopixel.zip -d /tmp
 
 script:
-    - platformio ci --lib=/tmp/Adafruit_NeoPixel-master --project-conf platformio.ini
+    - platformio ci --lib=/tmp/Adafruit_NeoPixel-master --project-conf platformio.ini src/Goggles.ino src/gamma.h
