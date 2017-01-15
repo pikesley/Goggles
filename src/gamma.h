@@ -1,5 +1,5 @@
 // from https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
-const uint8_t PROGMEM gamma8[] = {
+const int PROGMEM gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
     1,  1,  1,  1,  1,  1,  1,  1,  1,  2,  2,  2,  2,  2,  2,  2,
