@@ -1,7 +1,35 @@
 #include <Arduino.h>
-#include <utils.h>
+#include <Goggles.h>
 
-int mode = 1;
+int white[]   = {255, 255, 255};
+int red[]     = {255,   0,   0};
+int orange[]  = {255, 127,   0};
+int green[]   = {  0, 255,   0};
+int cyan[]    = {  0, 255, 255};
+int blue[]    = {  0,   0, 255};
+int magenta[] = {255,   0, 255};
+
+int button = 7;
+int mode = 0;
+volatile byte changeMode = false;
+
+Goggles goggles(16, // pin
+                35, // delay (ms)
+                14, // right-eye nose pin
+                4,  // left-eye nose pin
+                16  // pixels-per-eye
+              );
+
+void pin_ISR() {
+  changeMode = true;
+}
+
+void setup() {
+  pinMode(button, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(button), pin_ISR, FALLING);
+
+  goggles.blankAll();
+}
 
 void loop() {
   if (changeMode) {
@@ -14,26 +42,26 @@ void loop() {
 
   switch(mode) {
   case 0:
-    blankAll();
-    juggle(white);
+    goggles.blankAll();
+    goggles.juggle(white);
     break;
   case 1:
-    rollers(red);
+    goggles.roll(red);
     break;
   case 2:
-    rollers(orange);
+    goggles.roll(orange);
     break;
   case 3:
-    rollers(green);
+    goggles.roll(green);
     break;
   case 4:
-    rollers(cyan);
+    goggles.roll(cyan);
     break;
   case 5:
-    rollers(blue);
+    goggles.roll(blue);
     break;
   case 6:
-    rollers(magenta);
+    goggles.roll(magenta);
     break;
   }
 }

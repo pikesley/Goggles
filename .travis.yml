@@ -14,4 +14,4 @@ install:
   - unzip /tmp/adafruit_neopixel.zip -d /tmp
 
 script:
-  - platformio ci --lib=/tmp/Adafruit_NeoPixel-master --project-conf platformio.ini src/main.cpp src/gamma.h src/utils.h
+  - platformio ci --lib=/tmp/Adafruit_NeoPixel-master --project-conf platformio.ini src/main.cpp src/Goggles.h src/Goggles.cpp
