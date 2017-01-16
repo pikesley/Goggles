@@ -2,21 +2,22 @@
 
 Goggles::Goggles(
   int pin,
-  int button,
   int sleep,
   int right_nose,
   int left_nose,
   int pixel_count
 ) {
   pin = pin;
-  button = button;
-  sleep = sleep;
+  _sleep = sleep;
   right_nose = right_nose;
   left_nose = left_nose;
   _pixel_count = pixel_count;
 
-  pixels = Adafruit_NeoPixel(_pixel_count * 2, pin);
+  _offset = 0;
+
+  pixels = Adafruit_NeoPixel(pixel_count * 2, pin);
   pixels.begin();
+  pixels.setBrightness(85);
 }
 
 void Goggles::lightOne(int index, int offset, int colour[]) {
@@ -37,6 +38,21 @@ void Goggles::blankAll() {
     pixels.setPixelColor(i, 0);
   }
   pixels.show();
+}
+
+void Goggles::roll(int colour[]) {
+  for(int i = 0; i < _pixel_count * 2; i++) {
+    pixels.setPixelColor(i, 0);
+    if(((_offset + i) & 7) < 2) {
+      pixels.setPixelColor(i,
+                           correctColour(colour[0]),
+                           correctColour(colour[1]),
+                           correctColour(colour[2]));
+    }
+  }
+  pixels.show();
+  _offset++;
+  delay(_sleep);
 }
 
 int Goggles::correctColour(int component) {

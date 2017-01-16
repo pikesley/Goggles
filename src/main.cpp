@@ -9,45 +9,54 @@ int cyan[]    = {  0, 255, 255};
 int blue[]    = {  0,   0, 255};
 int magenta[] = {255,   0, 255};
 
-Goggles goggles(16, 7, 35, 14, 4, 16);
+int button = 7;
+int mode = 1;
+volatile byte changeMode = false;
+
+Goggles goggles(16, 35, 14, 4, 16);
+
+void pin_ISR() {
+  changeMode = true;
+}
 
 void setup() {
+  pinMode(button, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(button), pin_ISR, FALLING);
+
   goggles.blankAll();
 }
 
 void loop() {
-  goggles.lightOne(14, 0, green);
-  goggles.lightOne(7, 16, orange);
-  /*if (changeMode) {
+  if (changeMode) {
     mode++;
     changeMode = false;
     if (mode > 6) {
-      mode = 0;
+      mode = 1;
     }
   }
 
   switch(mode) {
-  case 0:
+/*  case 0:
     blankAll();
     juggle(white);
-    break;
+    break;*/
   case 1:
-    rollers(red);
+    goggles.roll(red);
     break;
   case 2:
-    rollers(orange);
+    goggles.roll(orange);
     break;
   case 3:
-    rollers(green);
+    goggles.roll(green);
     break;
   case 4:
-    rollers(cyan);
+    goggles.roll(cyan);
     break;
   case 5:
-    rollers(blue);
+    goggles.roll(blue);
     break;
   case 6:
-    rollers(magenta);
+    goggles.roll(magenta);
     break;
-  }*/
+  }
 }

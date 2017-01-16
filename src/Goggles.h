@@ -8,7 +8,6 @@ class Goggles {
 public:
   Goggles(
     int pin,
-    int button,
     int sleep,
     int right_nose,
     int left_nose,
@@ -20,12 +19,14 @@ public:
   int correctColour(int component);
 
   int pin;
-  int button;
-  int sleep;
+  int _sleep;
   int right_nose;
   int left_nose;
   int _pixel_count;
+  int _offset;
   Adafruit_NeoPixel pixels;
+
+  void roll(int colour[]);
 };
 
 #endif
