@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include <Goggles.h>
 
 int white[]   = {255, 255, 255};

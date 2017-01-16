@@ -1,8 +1,8 @@
 #ifndef Goggles_h
 #define Goggles_h
 
-#include "Arduino.h"
-#include "Adafruit_NeoPixel.h"
+#include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 
 class Goggles {
 public:
