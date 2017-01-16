@@ -10,10 +10,15 @@ int blue[]    = {  0,   0, 255};
 int magenta[] = {255,   0, 255};
 
 int button = 7;
-int mode = 1;
+int mode = 0;
 volatile byte changeMode = false;
 
-Goggles goggles(16, 35, 14, 4, 16);
+Goggles goggles(16, // pin
+                35, // delay (ms)
+                14, // right-eye nose pin
+                4,  // left-eye nose pin
+                16  // pixels-per-eye
+              );
 
 void pin_ISR() {
   changeMode = true;
@@ -31,15 +36,15 @@ void loop() {
     mode++;
     changeMode = false;
     if (mode > 6) {
-      mode = 1;
+      mode = 0;
     }
   }
 
   switch(mode) {
-/*  case 0:
-    blankAll();
-    juggle(white);
-    break;*/
+  case 0:
+    goggles.blankAll();
+    goggles.juggle(white);
+    break;
   case 1:
     goggles.roll(red);
     break;

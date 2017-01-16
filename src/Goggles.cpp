@@ -9,8 +9,8 @@ Goggles::Goggles(
 ) {
   pin = pin;
   _sleep = sleep;
-  right_nose = right_nose;
-  left_nose = left_nose;
+  _right_nose = right_nose;
+  _left_nose = left_nose;
   _pixel_count = pixel_count;
 
   _offset = 0;
@@ -55,6 +55,23 @@ void Goggles::roll(int colour[]) {
   delay(_sleep);
 }
 
+void Goggles::juggle(int colour[]) {
+  for(int i = 0; i < 1; i++) {
+    rollLeft(colour);
+    rollRight(colour);
+  }
+  for(int i = 0; i < 2; i++) {
+    rollLeft(colour);
+  }
+  for(int i = 0; i < 1; i++) {
+    rollRight(colour);
+    rollLeft(colour);
+  }
+  for(int i = 0; i < 2; i++) {
+    rollRight(colour);
+  }
+}
+
 int Goggles::correctColour(int component) {
   // from https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
   int gamma8[] = {
@@ -77,4 +94,22 @@ int Goggles::correctColour(int component) {
     };
 
   return gamma8[component];
+}
+
+void Goggles::rollRight(int colour[]) {
+  for(int i = _right_nose; i < _pixel_count + _right_nose; i++) {
+    lightOne(i % _pixel_count, 0, colour);
+    delay(_sleep);
+  }
+
+  blankAll();
+}
+
+void Goggles::rollLeft(int colour[]) {
+  for(int i = _left_nose + _pixel_count; i > _left_nose; i--) {
+    lightOne(i % _pixel_count, _pixel_count, colour);
+    delay(_sleep);
+  }
+
+  blankAll();
 }
