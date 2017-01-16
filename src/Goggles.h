@@ -17,16 +17,15 @@ public:
 
   void lightOne(int index, int offset, int colour[]);
   void blankAll();
-  
+  int correctColour(int component);
+
   int pin;
   int button;
   int sleep;
   int right_nose;
   int left_nose;
-  int pixel_count;
+  int _pixel_count;
   Adafruit_NeoPixel pixels;
-
-  const int PROGMEM gamma8[];
 };
 
 #endif

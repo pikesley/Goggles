@@ -1,5 +1,4 @@
 #include <Arduino.h>
-#include <Adafruit_NeoPixel.h>
 #include <Goggles.h>
 
 int white[]   = {255, 255, 255};
@@ -10,17 +9,15 @@ int cyan[]    = {  0, 255, 255};
 int blue[]    = {  0,   0, 255};
 int magenta[] = {255,   0, 255};
 
-void setup() {
-  Adafruit_NeoPixel p = Adafruit_NeoPixel(32, 16);
-  p.setPixelColor(0, 255, 255, 255);
-  p.show();
+Goggles goggles(16, 7, 35, 14, 4, 16);
 
-  /*Goggles g(16, 7, 35, 14, 4, 16);
-  g.blankAll();
-  g.lightOne(14, 0, red);*/
+void setup() {
+  goggles.blankAll();
 }
 
 void loop() {
+  goggles.lightOne(14, 0, green);
+  goggles.lightOne(7, 16, orange);
   /*if (changeMode) {
     mode++;
     changeMode = false;
