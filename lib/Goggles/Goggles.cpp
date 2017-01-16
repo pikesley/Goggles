@@ -1,4 +1,4 @@
-#include "Goggles.h"
+#include <Goggles.h>
 
 Goggles::Goggles(
   int pin,
@@ -20,20 +20,7 @@ Goggles::Goggles(
   pixels.setBrightness(85);
 }
 
-void Goggles::lightOne(int index, int offset, int colour[]) {
-  for(int i = offset; i < _pixel_count * 2; i++) {
-    pixels.setPixelColor(i, 0);
-    if(i == index + offset) {
-      pixels.setPixelColor(i,
-                           correctColour(colour[0]),
-                           correctColour(colour[1]),
-                           correctColour(colour[2]));
-    }
-  }
-  pixels.show();
-}
-
-void Goggles::blankAll() {
+void Goggles::blank() {
   for(int i = 0; i < _pixel_count * 2; i++) {
     pixels.setPixelColor(i, 0);
   }
@@ -72,6 +59,19 @@ void Goggles::juggle(int colour[]) {
   }
 }
 
+void Goggles::lightOne(int index, int offset, int colour[]) {
+  for(int i = offset; i < _pixel_count * 2; i++) {
+    pixels.setPixelColor(i, 0);
+    if(i == index + offset) {
+      pixels.setPixelColor(i,
+                           correctColour(colour[0]),
+                           correctColour(colour[1]),
+                           correctColour(colour[2]));
+    }
+  }
+  pixels.show();
+}
+
 int Goggles::correctColour(int component) {
   // from https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
   int gamma8[] = {
@@ -102,7 +102,7 @@ void Goggles::rollRight(int colour[]) {
     delay(_sleep);
   }
 
-  blankAll();
+  blank();
 }
 
 void Goggles::rollLeft(int colour[]) {
@@ -111,5 +111,5 @@ void Goggles::rollLeft(int colour[]) {
     delay(_sleep);
   }
 
-  blankAll();
+  blank();
 }
