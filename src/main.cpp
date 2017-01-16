@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Adafruit_NeoPixel.h>
 #include <Goggles.h>
 
 int white[]   = {255, 255, 255};
