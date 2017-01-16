@@ -14,25 +14,24 @@ public:
     int pixel_count
   );
 
-  void lightOne(int index, int offset, int colour[]);
-  void blankAll();
-
-  int pin;
-  int _sleep;
-  int _right_nose;
-  int _left_nose;
-  int _pixel_count;
-  int _offset;
-  Adafruit_NeoPixel pixels;
+  void blank();
 
   void roll(int colour[]);
   void juggle(int colour[]);
 
 private:
   int correctColour(int component);
-
   void rollLeft(int colour[]);
   void rollRight(int colour[]);
+  void lightOne(int index, int offset, int colour[]);
+
+  int _sleep;
+  int pin;
+  int _right_nose;
+  int _left_nose;
+  int _pixel_count;
+  int _offset;
+  Adafruit_NeoPixel pixels;
 };
 
 #endif

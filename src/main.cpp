@@ -27,8 +27,7 @@ void pin_ISR() {
 void setup() {
   pinMode(button, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(button), pin_ISR, FALLING);
-
-  goggles.blankAll();
+  goggles.blank();
 }
 
 void loop() {
@@ -42,7 +41,7 @@ void loop() {
 
   switch(mode) {
   case 0:
-    goggles.blankAll();
+    goggles.blank();
     goggles.juggle(white);
     break;
   case 1:
