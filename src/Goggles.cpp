@@ -31,6 +31,13 @@ void Goggles::lightOne(int index, int offset, int colour[]) {
   pixels.show();
 }
 
+void Goggles::blankAll() {
+  for(int i = 0; i < pixel_count * 2; i++) {
+    pixels.setPixelColor(i, 0); 
+  }
+  pixels.show();
+}
+
 // from https://learn.adafruit.com/led-tricks-gamma-correction/the-quick-fix
 const int PROGMEM gamma8[] = {
     0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,

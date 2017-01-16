@@ -16,7 +16,8 @@ public:
   );
 
   void lightOne(int index, int offset, int colour[]);
-
+  void blankAll();
+  
   int pin;
   int button;
   int sleep;

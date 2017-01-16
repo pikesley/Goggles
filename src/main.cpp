@@ -1,7 +1,23 @@
 #include <Arduino.h>
 #include <Goggles.h>
 
-void setup() {}
+int white[]   = {255, 255, 255};
+int red[]     = {255,   0,   0};
+int orange[]  = {255, 127,   0};
+int green[]   = {  0, 255,   0};
+int cyan[]    = {  0, 255, 255};
+int blue[]    = {  0,   0, 255};
+int magenta[] = {255,   0, 255};
+
+void setup() {
+  Adafruit_NeoPixel p = Adafruit_NeoPixel(32, 16);
+  p.setPixelColor(0, 255, 255, 255);
+  p.show();
+
+  /*Goggles g(16, 7, 35, 14, 4, 16);
+  g.blankAll();
+  g.lightOne(14, 0, red);*/
+}
 
 void loop() {
   /*if (changeMode) {
