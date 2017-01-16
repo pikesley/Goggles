@@ -1,10 +1,10 @@
 #include <Arduino.h>
-#include <utils.h>
+#include <Goggles.h>
 
-int mode = 1;
+void setup() {}
 
 void loop() {
-  if (changeMode) {
+  /*if (changeMode) {
     mode++;
     changeMode = false;
     if (mode > 6) {
@@ -35,5 +35,5 @@ void loop() {
   case 6:
     rollers(magenta);
     break;
-  }
+  }*/
 }

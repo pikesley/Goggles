@@ -8,7 +8,6 @@
 #define RIGHT_NOSE 14
 #define LEFT_NOSE 4
 
-extern const int gamma8[];
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(PIXELS * 2, PIN);
 volatile byte changeMode = false;
 int offset = 0;
